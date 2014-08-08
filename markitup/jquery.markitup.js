@@ -221,7 +221,12 @@
                             $$.focus();
 						}).bind('mouseup', function(e) {
 							if (button.call) {
-								eval(button.call)(e); // Pass the mouseup event to custom delegate
+								// Call preview manually instead of relying on eval() because closure compiler renames functions
+								if (button.call === 'preview') {
+									preview(e);
+								} else {
+									eval(button.call)(e); // Pass the mouseup event to custom delegate	
+								}
 							}
 							setTimeout(function() { markup(button) },1);
 							return false;

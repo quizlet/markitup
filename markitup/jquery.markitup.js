@@ -541,8 +541,10 @@
 				if (options.previewHandler && typeof options.previewHandler === 'function') {
 					options.previewHandler( $$.val() );
 				} else if (options.previewParser && typeof options.previewParser === 'function') {
-					var data = options.previewParser( $$.val() );
-					writeInPreview(localize(data, 1) ); 
+					options.previewParser( $$.val() );
+					// OLD CODE - custom previewParser function doesn't return anything, just renders preview 
+					// var data = options.previewParser( $$.val() );
+					// writeInPreview(localize(data, 1) ); 
 				} else if (options.previewParserPath !== '') {
 					$.ajax({
 						type: options.previewParserAjaxType,
